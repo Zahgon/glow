@@ -1,0 +1,6 @@
+Term
+: Definition one
+: Definition two
+
+Another
+: And its definition

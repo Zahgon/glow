@@ -5,9 +5,8 @@ Render markdown on the CLI, with _pizzazz_!
 <p align="center">
     <img src="https://stuff.charm.sh/glow/glow-banner-github.gif" alt="Glow Logo">
     <a href="https://github.com/charmbracelet/glow/releases"><img src="https://img.shields.io/github/release/charmbracelet/glow.svg" alt="Latest Release"></a>
-    <a href="https://pkg.go.dev/github.com/charmbracelet/glow?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
+    <a href="https://docs.rs/glow"><img src="https://img.shields.io/docsrs/glow" alt="Docs"></a>
     <a href="https://github.com/charmbracelet/glow/actions"><img src="https://github.com/charmbracelet/glow/workflows/build/badge.svg" alt="Build Status"></a>
-    <a href="https://goreportcard.com/report/github.com/charmbracelet/glow"><img src="https://goreportcard.com/badge/charmbracelet/glow" alt="Go ReportCard"></a>
 </p>
 
 <p align="center">
@@ -102,21 +101,32 @@ Or download a binary from the [releases][releases] page. MacOS, Linux, Windows,
 FreeBSD and OpenBSD binaries are available, as well as Debian, RPM, and Alpine
 packages. ARM builds are also available for macOS, Linux, FreeBSD and OpenBSD.
 
-### Go
+### Cargo
 
-Or just install it with `go`:
+Or just install it with `cargo`:
 
 ```bash
-go install charm.land/glow/v3@latest
+cargo install --git https://github.com/charmbracelet/glow
 ```
 
-### Build (requires Go 1.21+)
+### Build (requires Rust 1.85+)
 
 ```bash
 git clone https://github.com/charmbracelet/glow.git
 cd glow
-go build
+cargo build --release
 ```
+
+The binary lands in `target/release/glow`. To run the checks CI runs:
+
+```bash
+cargo test
+cargo clippy --all-targets -- -D warnings
+cargo fmt --check
+```
+
+The eight URL tests reach GitHub and GitLab and are ignored by default; run
+them with `cargo test --test url_test -- --ignored`.
 
 [releases]: https://github.com/charmbracelet/glow/releases
 

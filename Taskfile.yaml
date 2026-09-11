@@ -6,12 +6,18 @@ tasks:
   lint:
     desc: Run base linters
     cmds:
-      - golangci-lint run
+      - cargo clippy --all-targets -- -D warnings
+      - cargo fmt --check
 
   test:
     desc: Run tests
     cmds:
-      - go test ./... {{.CLI_ARGS}}
+      - cargo test {{.CLI_ARGS}}
+
+  build:
+    desc: Build the release binary
+    cmds:
+      - cargo build --release
 
   log:
     desc: Watch for glow logs
